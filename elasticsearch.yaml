@@ -42,10 +42,9 @@ spec:
               value: "es-cluster-0,es-cluster-1"
             - name: discovery.seed_hosts
               value: "es-cluster-0.elasticsearch,es-cluster-1.elasticsearch"
-            - name: bootstrap.memory_lock
-              value: "false"
-            - name: ES_JAVA_OPTS
-              value: "-Xms512m -Xmx512m"
+          envFrom:
+            - configMapRef:
+                name: elasticsearch-env
       initContainers:
         - name: fix-permissionsw
           image: busybox

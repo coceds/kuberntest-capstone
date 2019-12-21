@@ -18,11 +18,20 @@ spec:
           command: ["interactive", "ingress"]
           env:
             - name: REDIS_MASTER_HOST
-              value: "redis-master"
+              valueFrom:
+                configMapKeyRef:
+                  key: REDIS_MASTER_HOST
+                  name: redis-hosts
             - name: REDIS_SLAVE_HOST
-              value: "redis-slave"
+              valueFrom:
+                configMapKeyRef:
+                  key: REDIS_SLAVE_HOST
+                  name: redis-hosts
             - name: ELASTICSEARCH_HOSTS
-              value: "http://elasticsearch:9200"
+              valueFrom:
+                configMapKeyRef:
+                  key: ELASTICSEARCH_HOSTS
+                  name: elasticsearch-hosts
             - name: KUBERNETES_SERVICE_HOST
               value: "http://172.17.18.154/"
             - name: KUBERNETES_SERVICE_PORT

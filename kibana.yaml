@@ -24,6 +24,9 @@ spec:
               cpu: 100m
           env:
             - name: ELASTICSEARCH_HOSTS
-              value: "http://elasticsearch:9200"
+              valueFrom:
+                configMapKeyRef:
+                  key:  ELASTICSEARCH_HOSTS
+                  name: elasticsearch-hosts
           ports:
             - containerPort: 5601
