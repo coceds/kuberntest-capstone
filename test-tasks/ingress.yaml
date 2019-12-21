@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: apptest
+spec:
+  rules:
+    - http:
+        paths:
+          - backend:
+              serviceName: kibana
+              servicePort: 80
+            path: /

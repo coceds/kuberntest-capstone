@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test
+spec:
+  selector:
+     matchLabels:
+        app: test
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: 
+      maxUnavailable: 1
+      maxSurge: 1 
+  template:
+    metadata:
+      labels:
+        app: test
+    spec:
+      containers:
+      - name: test
+        image: quay.io/myafk/interactive:stable
+        command: ["interactive", "workloads","-t=second"]
+        env: 
+            -   name: FIRST_RUN_HASH
+                value: "0208c0615d7aff81fafc87c7499330215d5f8a4d"
